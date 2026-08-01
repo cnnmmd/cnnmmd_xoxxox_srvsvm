@@ -1,0 +1,29 @@
+compatibility_level = 3.8
+
+myhostname = mx1.dom001
+mydomain = dom001
+myorigin = $mydomain
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+
+inet_interfaces = all
+inet_protocols = ipv4
+mynetworks = 127.0.0.0/8, 192.168.100.0/24
+
+home_mailbox =
+mail_spool_directory = /var/mail
+local_recipient_maps = unix:passwd.byname $alias_maps
+
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+smtpd_tls_security_level = none
+
+smtpd_banner = $myhostname ESMTP
+disable_vrfy_command = no
+readme_directory = no
+biff = no
+append_dot_mydomain = no
+
+maillog_file = /var/log/mail/mail.log
