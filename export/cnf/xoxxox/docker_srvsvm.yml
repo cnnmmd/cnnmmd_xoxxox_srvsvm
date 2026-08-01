@@ -1,0 +1,15 @@
+networks:
+  default:
+    name: xoxxox_netmid
+    external: true
+services:
+  xoxxox_srvsvm:
+    image: xoxxox/envsvm:001
+    container_name: xoxxox_srvsvm
+    volumes:
+      - ../../../import/cnnmmd_xoxxox_srvsvm/srvsvm/etc_postfix:/etc/postfix
+      - ../../../import/cnnmmd_xoxxox_srvsvm/srvsvm/var_spool_postfix:/var/spool/postfix
+      - ../../../import/cnnmmd_xoxxox_srvsvm/srvsvm/etc_dovecot:/etc/dovecot
+      - ../../../import/cnnmmd_xoxxox_srvsvm/srvsvm/var_mail:/var/mail
+      - ../../../import/cnnmmd_xoxxox_srvsvm/srvsvm/var_log_mail:/var/log/mail
+    command: sh -c "postfix start & dovecot -F"
